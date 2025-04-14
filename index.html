@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Math Methods</title>
+
+	<!-- Bootstrap CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+	<style>
+		body {
+			background-color: lightblue;
+			font-family: 'Poppins', sans-serif;
+		}
+
+		#block {
+			background-color: rgba(255, 255, 255, 0.8);
+			padding: 30px;
+			border-radius: 15px;
+			height: 70vh;
+			box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+		}
+
+		label {
+			font-weight: 600;
+			margin-right: 10px;
+		}
+
+		input[type="text"] {
+			width: 100px;
+			text-align: center;
+			margin-bottom: 10px;
+			display: inline-block;
+		}
+
+		form {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		#output {
+			font-size: 1.1rem;
+			font-weight: 500;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container text-center mt-5" id="block">
+
+		<div class="container-fluid mt-3">
+			<h1 style="font-size: 50px;">Sophie's Javascript Math Method Buttons</h1>
+			<details ontoggle="message1()">
+				<summary>Click for instructions</summary>
+				<br>
+				<i id="message"></i>
+			</details>
+		</div>
+
+		<!-- Input Section -->
+		<form>
+			<div class="mb-2">
+				<label for="num">z:</label>
+				<input type="text" name="name" id="num">
+			</div>
+			<div>
+				<label for="num2">y:</label>
+				<input type="text" name="name2" id="num2">
+			</div>
+		</form>
+
+		<!-- Output -->
+		<p id="output">[Result will show up here.]</p>
+
+		<!-- Buttons -->
+		<table class="table mx-auto table-bordered table-sm" style="width: 50%;">
+			<tr>
+				<th><button class="btn btn-lg btn-success w-100" onclick="round()">Round (z)</button></th>
+				<th><button class="btn btn-lg btn-primary w-100" onclick="pow()">Power (z^y)</button></th>
+			</tr>
+			<tr>
+				<th><button class="btn btn-lg btn-danger w-100" onclick="sqrt()">Square Root (z)</button></th>
+				<th><button class="btn btn-lg btn-warning w-100" onclick="abs()">Absolute (z)</button></th>
+			</tr>
+			<tr>
+				<th><button class="btn btn-lg btn-info w-100" onclick="min()">Minimum (z,y)</button></th>
+				<th><button class="btn btn-lg btn-success w-100" onclick="max()">Maximum (z,y)</button></th>
+			</tr>
+			<tr>
+				<th><button class="btn btn-lg btn-warning w-100" onclick="random()">Random (z,y)</button></th>
+				<th><button class="btn btn-lg btn-dark w-100" onclick="reset()">Reset (z)</button></th>
+			</tr>
+		</table>
+
+	</div>
+
+	<script>
+		function message1() {
+			document.getElementById('message').innerHTML = "Input numbers below and manipulate its value using the following buttons.";
+		}
+
+		function round() {
+			let z = parseFloat(document.getElementById("num").value);
+			let result = Math.round(z);
+			document.getElementById('output').innerHTML = "<b>Rounded value of Z:</b> " + result;
+		}
+
+		function pow() {
+			let z = parseFloat(document.getElementById("num").value);
+			let y = parseFloat(document.getElementById("num2").value);
+			let result = Math.pow(z, y);
+			document.getElementById('output').innerHTML = "<b>Z raised to the power Y:</b> " + result;
+		}
+
+		function sqrt() {
+			let z = parseFloat(document.getElementById("num").value);
+			let result = Math.sqrt(z);
+			result = Math.round(result * 100) / 100;
+			document.getElementById('output').innerHTML = "<b>Square root of Z (rounded to 2 decimals):</b> " + result;
+		}
+
+		function abs() {
+			let z = parseFloat(document.getElementById("num").value);
+			let result = Math.abs(z);
+			document.getElementById('output').innerHTML = "<b>Absolute value of Z:</b> " + result;
+		}
+
+		function min() {
+			let z = parseFloat(document.getElementById("num").value);
+			let y = parseFloat(document.getElementById("num2").value);
+			let result = Math.min(z, y);
+			document.getElementById('output').innerHTML = "<b>Minimum value from Z and Y:</b> " + result;
+		}
+
+		function max() {
+			let z = parseFloat(document.getElementById("num").value);
+			let y = parseFloat(document.getElementById("num2").value);
+			let result = Math.max(z, y);
+			document.getElementById('output').innerHTML = "<b>Maximum value from Z and Y:</b> " + result;
+		}
+
+		function random() {
+			let z = parseFloat(document.getElementById("num").value);
+			let y = parseFloat(document.getElementById("num2").value);
+			let minVal = Math.min(z, y);
+			let maxVal = Math.max(z, y);
+			let result = Math.random() * (maxVal - minVal) + minVal;
+			result = Math.round(result * 100) / 100;
+			document.getElementById('output').innerHTML = "<b>Random value between Z and Y:</b> " + result;
+		}
+
+		function reset() {
+			document.getElementById("num").value = "";
+			document.getElementById("num2").value = "";
+			document.getElementById("output").innerHTML = "[Result will show up here.]";
+		}
+	</script>
+
+</body>
+</html>
